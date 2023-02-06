@@ -1,0 +1,29 @@
+def format_duration(seconds)
+  if seconds == 0
+    return "now"
+  end
+
+  conversion_factors = [
+    ["year", 365 * 24 * 60 * 60],
+    ["day", 24 * 60 * 60],
+    ["hour", 60 * 60],
+    ["minute", 60],
+    ["second", 1]
+  ]
+
+  components = []
+  conversion_factors.each do |unit, factor|
+    if seconds >= factor
+      count = seconds / factor
+      seconds %= factor
+      components << "#{count} #{unit}" + (count > 1 ? "s" : "")
+    end
+  end
+
+  if components.size > 1
+    last_component = components.pop
+    return components.join(", ") + " and " + last_component
+  else
+    return components[0]
+  end
+end
