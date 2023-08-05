@@ -12,3 +12,6 @@ def cakes(recipe, available)
 
   return differences.min
 end
+
+
+#tests
