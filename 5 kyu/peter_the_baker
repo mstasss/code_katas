@@ -1,0 +1,14 @@
+def cakes(recipe, available)
+  recipe.each_key do |key|
+    unless available.include?(key) && available[key] >= recipe[key]
+      return 0
+    end
+  end
+
+  differences = []
+  recipe.each do |key, value|
+    differences << available[key] / value
+  end
+
+  return differences.min
+end
